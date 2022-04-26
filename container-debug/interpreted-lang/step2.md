@@ -5,28 +5,29 @@
 
 - FastAPI
 
-  ```python
-  from fastapi import FastAPI
+```python
+from fastapi import FastAPI
 
-  app = FastAPI()
+app = FastAPI()
 
 
-  @app.get("/")
-  def root_controller():
-      return "Hell World"
-  ```
+@app.get("/")
+def root_controller():
+    return "Hell World"
+```
+
 - Dockerfile
 
-  ```Dockerfile
-  FROM python:3.10
-  WORKDIR /app
+```Dockerfile
+FROM python:3.10
+WORKDIR /app
 
-  RUN pip install fastapi uvicorn[standard]
+RUN pip install fastapi uvicorn[standard]
 
-  COPY index.py .
+COPY index.py .
 
-  CMD ["uvicorn", "index:app", "--host", "0.0.0.0", "--port", "80"]
-  ```
+CMD ["uvicorn", "index:app", "--host", "0.0.0.0", "--port", "80"]
+```
 
 컨테이너 이미지를 파드로 만들어서 배포합니다.
 
