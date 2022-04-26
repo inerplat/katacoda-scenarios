@@ -1,0 +1,10 @@
+{
+    "title": "컨테이너 디버그",
+    "description": "Kubernetes 환경에서의 컨테이너 디버그",
+    "courses": [{
+        "course_id": "interpreted-lang",
+        "title": "동작중인 FastAPI 디버그",
+        "description": "인터프리팅 언어 디버그에 대해 학습합니다"
+      }
+    ]
+  }
