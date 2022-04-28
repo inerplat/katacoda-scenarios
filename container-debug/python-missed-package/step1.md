@@ -2,18 +2,12 @@
 
 실습환경이 구성될때까지 잠시 기다려주세요
 
-`minikube status`{{execute}}
-
-```
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-```
+`curl -sfL https://get.k3s.io | sh -`{{execute}}
 
 `kubectl get node`{{execute}}
 
 ```
-NAME       STATUS   ROLES    AGE    VERSION
-minikube   Ready    master   8m1s   v1.17.3
+$ kubectl get node
+NAME     STATUS   ROLES                  AGE   VERSION
+host01   Ready    control-plane,master   40s   v1.22.7+k3s1
 ```
