@@ -31,10 +31,3 @@ ModuleNotFoundError: No module named 'numpy'
 이번 예제는 로그를 통해서도 쉽게 원인을 파악할 수 있습니다.
 
 하지만 그 외에 복합적인 오류가 발생하거나 로그를 통해 파악하기 어려운 경우에, 매번 컨테이너 이미지를 빌드하며 디버그를 수행하면 해결까지 오랜 시간이 소요될 수있습니다.
-
-
-`STATUS: Running`이 확인되면 POD_IP로 `GET` 요청을 보내 응답을 확인할 수 있습니다.
-
-`POD_IP=$(kubectl get pod python-missed-package -o=jsonpath="{.status.podIP}")`{{execute}}
-
-`curl $POD_IP/?row=2&col=3`{{execute}}
