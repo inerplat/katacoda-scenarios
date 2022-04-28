@@ -4,25 +4,19 @@
 
 - 컨테이너 접근
 
-  `kubectl exec -it interpreted-lang -- /bin/bash`{{execute}}
+  `kubectl exec -it python-missed-package -- /bin/bash`{{execute}}
 
-- 소스코드 확인
+- 누락된 패키지 설치
 
-  `cat index.py`{{execute}}
-
-- "Hell World"를 "Hello World"로 수정
-
-  `sed -i -E "s/Hell World/Hello World/g" index.py`{{execute}}
-
-- 변경된 소스코드 확인
-
-  `cat index.py`{{execute}}
+  `pip install numpy`{{execute}}
 
 - 어플리케이션 응답 확인
 
-  `curl localhost`{{execute}}
+  `curl localhost/?row=2&col=3`{{execute}}
 
-재시작을 위해 ENTRYPOINT로 설정된 프로세스를 강제로 종료하면, 컨테이너가 비정상 상태로 인식되어 CrashLoopBackOff 됩니다.
+기존에 실행된 프로세스에는 패키지 설치가 반영되지 않아 재시작이 필요합니다.
+
+그러나 재시작을 위해 ENTRYPOINT로 설정된 프로세스를 강제로 종료하면, 컨테이너가 비정상 상태로 인식되어 CrashLoopBackOff 됩니다.
 
 - 프로세스 확인
 

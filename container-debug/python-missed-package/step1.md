@@ -4,17 +4,16 @@
 
 `minikube status`{{execute}}
 
-> host: Running
->
-> kubelet: Running
->
-> apiserver: Running
->
-> kubeconfig: Configured
+```
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
 
 `kubectl get node`{{execute}}
 
-> NAME       STATUS   ROLES    AGE    VERSION
->
-> minikube   Ready    master   8m1s   v1.17.3
-
+```
+NAME       STATUS   ROLES    AGE    VERSION
+minikube   Ready    master   8m1s   v1.17.3
+```

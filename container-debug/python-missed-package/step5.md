@@ -4,7 +4,7 @@
 
 - 기존에 배포한 파드를 삭제
 
-  `kubectl delete pod interpreted-lang --wait=false`{{execute}}
+  `kubectl delete pod python-missed-package`{{execute}}
 
 - command / args를 재작성
 
@@ -12,13 +12,13 @@
   apiVersion: v1
   kind: Pod
   metadata:
-    name: interpreted-lang2
+    name: python-missed-package
     labels:
-      app: intrepreted-lang2
+      app: python-missed-package
   spec:
     containers:
       - name: fastapi
-        image: inerplat/container-debug-example:interpreted-lang
+        image: inerplat/container-debug-example:python-missed-package
         ports:
           - containerPort: 80
         command:
@@ -38,11 +38,11 @@
 
 - 컨테이너의 쉘에 접근
 
-  `kubectl exec -it interpreted-lang2 -- /bin/bash`{{execute}}
+  `kubectl exec -it python-missed-package -- /bin/bash`{{execute}}
 
-- 컨테이너 내부의 소스코드 수정
+- 누락된 패키지 설치
 
-  `sed -i -E "s/Hell World/Hello World/g" index.py`{{execute}}
+  `pip install numpy`{{execute}}
 
 - 어플리케이션을 백그라운드에서 실행
 
@@ -54,8 +54,8 @@
 
 - 어플리케이션 응답 확인
 
-  `POD_IP=$(kubectl get pod interpreted-lang2 -o=jsonpath="{.status.podIP}")`{{execute}}
+  `POD_IP=$(kubectl get pod python-missed-package -o=jsonpath="{.status.podIP}")`{{execute}}
   
-  `curl $POD_IP`{{execute}}
+  `curl $POD_IP/?row=2&col=3`{{execute}}
 
 

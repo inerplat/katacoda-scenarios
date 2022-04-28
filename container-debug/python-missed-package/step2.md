@@ -38,13 +38,13 @@ CMD ["uvicorn", "index:app", "--host", "0.0.0.0", "--port", "80"]
 apiVersion: v1
 kind: Pod
 metadata:
-  name: interpreted-lang
+  name: python-missed-package
   labels:
-    app: intrepreted-lang
+    app: python-missed-package
 spec:
   containers:
     - name: fastapi
-      image: inerplat/container-debug-example:interpreted-lang
+      image: inerplat/container-debug-example:python-missed-package
       ports:
         - containerPort: 80
 </pre>
