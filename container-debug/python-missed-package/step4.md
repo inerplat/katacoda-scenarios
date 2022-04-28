@@ -1,34 +1,38 @@
-# 동작중인 파드를 디버그
+# 컨테이너의 실행 명령어를 대체
 
-동작중인 파드에 접근하여 코드를 수정하더라도, 어플리케이션에 바로 반영되지는 않습니다.
+파드를 배포할 때 컨테이너 이미지에 작성된 컨테이너의 명령어를 대체할 수 있습니다.
 
-- 컨테이너 접근
+- 기존에 배포한 파드를 삭제
 
-  `kubectl exec -it python-missed-package -- /bin/bash`{{execute}}
+  `kubectl delete pod python-missed-package`{{execute}}
 
-- 누락된 패키지 설치
+- command / args를 재작성
 
-  `pip install numpy`{{execute}}
+  <pre class="file" data-filename="pod2.yaml" data-target="prepend">
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: python-missed-package
+    labels:
+      app: python-missed-package
+  spec:
+    containers:
+      - name: fastapi
+        image: inerplat/container-debug-example:python-missed-package
+        ports:
+          - containerPort: 80
+        command:
+          - /bin/sh
+        args:
+          - -c
+          - tail -f /dev/null
+  </pre>
 
-- 어플리케이션 응답 확인
+위와 같이 작성하면 실행된 쉘이 /dev/null 파일을 테일링하여 종료되지 않습니다.
 
-  `curl localhost/?row=2&col=3`{{execute}}
+이제 파드내의 코드를 수정하고 실행하여 디버깅을 수행할 수 있습니다.
 
-기존에 실행된 프로세스에는 패키지 설치가 반영되지 않아 재시작이 필요합니다.
+- 명령어를 새로 작성한 파드 배포
 
-그러나 재시작을 위해 ENTRYPOINT로 설정된 프로세스를 강제로 종료하면, 컨테이너가 비정상 상태로 인식되어 CrashLoopBackOff 됩니다.
+  `kubectl apply -f pod2.yaml`{{execute}}
 
-- 프로세스 확인
-
-  `ps aux`{{execute}}
-
-- ENTRYPOINT인 pid:1를 강제 종료
-
-  `trap "exit" SIGINT SIGTERM`{{execute}}
-
-  `kill -s SIGINT 1`{{execute}}
-
-강제종료를 하면 컨테이너가 재시작되어 쉘이 종료됩니다.
-pod의 정보를 출력하면 restart 횟수가 1 증가한것을 확인할 수 있습니다.
-
-`kubectl get pod`{{execute}}
