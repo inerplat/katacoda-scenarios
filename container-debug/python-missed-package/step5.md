@@ -16,7 +16,7 @@
 
 - 컨테이너 내부에서 어플리케이션 응답 확인
 
-  `curl localhost/?row=2&col=3`{{execute}}
+  `curl "http://localhost/?row=2&col=3"`{{execute}}
 
 - 컨테이너 쉘 종료
 
@@ -26,4 +26,4 @@
 
   `POD_IP=$(kubectl get pod python-missed-package -o=jsonpath="{.status.podIP}")`{{execute}}
   
-  `curl $POD_IP/?row=2&col=3`{{execute}}
+  `curl "http://$POD_IP/?row=2&col=3"`{{execute}}
