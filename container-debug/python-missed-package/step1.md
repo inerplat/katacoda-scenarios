@@ -4,6 +4,8 @@
 
 `curl -sfL https://get.k3s.io | sh -`{{execute}}
 
+`echo 'alias kubectl="k3s kubectl"' >> .bashrc && source .bashrc`{{execute}}
+
 `kubectl get node`{{execute}}
 
 ```
