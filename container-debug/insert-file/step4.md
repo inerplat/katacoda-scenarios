@@ -83,5 +83,5 @@ EOF
 
 ```
 POD2_IP=$(kubectl get pod -l app=insert-file -o jsonpath="{.items[0].status.podIP}")
-curl "http://$POD2_IP/insert-file2.txt"
+curl "http://$POD2_IP:8080/insert-file2.txt"
 ```{{execute}}

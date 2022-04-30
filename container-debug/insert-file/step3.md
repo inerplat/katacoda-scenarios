@@ -55,4 +55,4 @@ EOF
 
 `POD_IP=$(kubectl get pod -l app=insert-file -o jsonpath="{.items[0].status.podIP}")`{{execute}}
 
-`curl "http://$POD_IP/insert-file1.txt"`{{execute}}
+`curl "http://$POD_IP:8080/insert-file1.txt"`{{execute}}
