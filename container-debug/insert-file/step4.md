@@ -91,4 +91,4 @@ echo $POD2_IP
 
 할당된 IP를 이용해 API를 호출합니다.
 
-curl "http://$POD2_IP:8080/insert-file2.txt"
+```curl "http://$POD2_IP:8080/insert-file2.txt"```{{execute}}
