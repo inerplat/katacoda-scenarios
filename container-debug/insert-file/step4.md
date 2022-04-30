@@ -84,7 +84,7 @@ EOF
 파드에 IP가 할당될때까지 잠시 기다립니다.
 
 ```
-POD2_IP=$(kubectl get pod -l app=insert-file -o jsonpath="{.items[0].status.podIP}")
+POD2_IP=$(kubectl get pod -l app=insert-file2 -o jsonpath="{.items[0].status.podIP}")
 echo $POD2_IP
 ```{{execute}}
 
