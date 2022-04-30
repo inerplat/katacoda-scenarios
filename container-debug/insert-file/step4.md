@@ -78,10 +78,17 @@ EOF
 
 `touch /tmp/die`{{execute}}
 
-5초정도 느긋하게 기다리면 initcontainer가 자동 종료됩니다.
+5초정도 기다리면 initcontainer가 자동 종료됩니다.
 이제 컨테이너 외부에서 API를 호출해 봅시다.
+
+파드에 IP가 할당될때까지 잠시 기다립니다.
 
 ```
 POD2_IP=$(kubectl get pod -l app=insert-file -o jsonpath="{.items[0].status.podIP}")
-curl "http://$POD2_IP:8080/insert-file2.txt"
+echo $POD2_IP
 ```{{execute}}
+
+
+할당된 IP를 이용해 API를 호출합니다.
+
+curl "http://$POD2_IP:8080/insert-file2.txt"

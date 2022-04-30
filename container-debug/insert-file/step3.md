@@ -53,6 +53,13 @@ spec:
 EOF
 ```{{execute}}
 
-`POD_IP=$(kubectl get pod -l app=insert-file -o jsonpath="{.items[0].status.podIP}")`{{execute}}
+파드에 IP가 할당될때까지 잠시 기다립니다.
+
+```
+POD_IP=$(kubectl get pod -l app=insert-file -o jsonpath="{.items[0].status.podIP}")
+echo $POD_IP
+```{{execute}}
+
+할당된 IP를 이용해 API를 호출합니다.
 
 `curl "http://$POD_IP:8080/insert-file1.txt"`{{execute}}
